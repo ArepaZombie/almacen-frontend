@@ -35,15 +35,26 @@ $(() => {
     window.location.replace('main.html'); // Redirigir a la página principal
   });
 
-  // boton para actulizar  
-  $('#btnActualizar').click(() => {
+
+  $('#btnEditarProducto').click(() => {
+
     const producto = new Producto();
-    const idProducto = $('#idProducto').val();
+    const user = firebase.auth().currentUser;
+    if (user == null) {
+      alert(`Para crear el producto debes estar autenticado`);
+      window.location.replace('index.html');
+      return;
+    }
+    const idProducto =  localStorage.getItem("idproducto");
     const nombre = $('#nombre').val();
     const tipo = $('#tipo').val();
     const stock = $('#stock').val();
     producto.actualizarProducto(idProducto, nombre, tipo, stock)
       .then(() => {
+        localStorage.removeItem("nombre")
+        localStorage.removeItem("tipo")
+        localStorage.removeItem("stock")
+        localStorage.removeItem("idproducto");
         alert(`Producto actualizado correctamente`);
         window.location.replace('main.html');
       })
@@ -53,22 +64,7 @@ $(() => {
       });
   });
 
-  /*$('#btnEditarProducto').click(() => {
-    const producto = new Producto();
-    const nombre = $('#nombre').val();
-    const tipo = $('#tipo').val();
-    const stock = $('#stock').val();
-    
-    producto.actualizarProducto(idProducto, nombre, tipo, stock)
-      .then(() => {
-        alert(`Producto actualizado correctamente`);
-        window.location.replace('main.html');
-      })
-      .catch(err => {
-        console.log(`Error => ${err}`);
-        alert(`Error => ${err}`);
-      });
-  });*/
+
 
   $('#btnBuscar').click(() => {
     const tipo = $('#tipo').val();
@@ -79,11 +75,15 @@ $(() => {
     } else producto.todosProdutos();
 
   })
+
+  $('#formularioEdicion').ready( () => {
+    $('#nombre').val(localStorage.getItem("nombre"));
+    $('#tipo').val(localStorage.getItem("tipo"));
+    $('#stock').val(localStorage.getItem("stock"));
+  } );
+
 })
 
-function preEditar(idProducto) {
-  window.location.replace(`editar.html?id=${idProducto}`);
-}
 
 function preEditar(idProducto) {
   firebase.auth().onAuthStateChanged((user) => {
@@ -92,28 +92,12 @@ function preEditar(idProducto) {
       producto.obtenerProducto(idProducto).then((doc) => {
         if (doc.exists) {
           const data = doc.data();
-          $('#nombre').val(data.nombre);
-          $('#tipo').val(data.tipo);
-          $('#stock').val(data.stock);
+          localStorage.setItem("idproducto",idProducto);
+          localStorage.setItem("nombre",data.nombre);
+          localStorage.setItem("tipo",data.tipo);
+          localStorage.setItem("stock",data.stock);
 
-          $('#btnEditar').click(() => {
-            const nombre = $('#nombre').val();
-            const tipo = $('#tipo').val();
-            const stock = $('#stock').val();
-
-            producto.actualizarProducto(idProducto, nombre, tipo, stock)
-              .then(() => {
-                alert('Producto actualizado correctamente');
-                window.location.replace('main.html');
-              })
-              .catch(err => {
-                console.log(`Error => ${err}`);
-                alert(`Error => ${err}`);
-              });
-          });
-
-          // Mostrar el formulario de edición si no está ya visible
-          $('#formularioEdicion').show();
+          window.location.replace('editar.html')
         } else {
           console.log("No se encontró el producto");
         }
@@ -129,7 +113,7 @@ function preEditar(idProducto) {
 
 
 function preBorrado(idProducto){
-  console.log(idProducto)
+  //console.log(idProducto)
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       const producto = new Producto();
