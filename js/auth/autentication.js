@@ -1,6 +1,5 @@
 class Autenticacion{
 
-
   autEmailPass (email, password) {
       firebase.auth().signInWithEmailAndPassword(email , password)
       .then( result => {
@@ -18,8 +17,6 @@ class Autenticacion{
           alert("Ingrese credenciales correctas")
   
         }) 
-  
-        //$('.modal').modal('close')       
   }
     
   crearCuentaEmailPass (email, password, nombres) {
@@ -30,7 +27,7 @@ class Autenticacion{
         })
 
         const configuracion = { 
-          url : 'http://localhost:5173/main.html'
+          url : 'http://localhost:5173/index.html'
         }
 
         result.user.sendEmailVerification(configuracion).catch(error => {
@@ -38,7 +35,8 @@ class Autenticacion{
           alert( error.message)
         } )
           firebase.auth().signOut()
-          alert(`Bienvenido ${nombres}, debes confirmar tu email`)
+          alert(`Registrado ${nombres}!`)
+          window.location.replace('main.html')
       } )
       .catch(error => {
         console.error(error)
@@ -47,19 +45,6 @@ class Autenticacion{
       })    
   }
 
-  authCuentaGoogle () {
-    const provider = new firebase.auth.GoogleAuthProvider()    
-    firebase.auth().signInWithPopup(provider)
-      .then( result =>  {
-        alert(`Bienvenido ${result.user.displayName} !! `)
-        window.location.replace("main.html")
-      })
-      .catch ( error => {
-        console.error(error)
-        alert(`Error al autenticarse con google  ${error}  `)
-      } )
-
-  }
 
   authLogout(){
     return firebase.auth().signOut().then(() => {

@@ -8,16 +8,15 @@ $(()=>{
         auth.autEmailPass(email , password)
     });
 
-    $("#btnIniciarGoogle").click(() => auth.authCuentaGoogle() );
 
-    $("#btnRegistro").click(() => {
+    $("#btnRegistrarUsuario").click(() => {
         const nombres = $('#nombre').val();
         const email = $('#email').val();
         const password = $('#password').val();
         auth.crearCuentaEmailPass( email , password , nombres)
     });
 
-    $("#btnLogout").click(() => auth.authLogout())
+    $("#btnCerrarSesion").click(() => auth.authLogout())
 
 
 });

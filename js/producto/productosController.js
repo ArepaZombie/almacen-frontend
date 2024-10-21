@@ -1,19 +1,17 @@
 $(() => {
 
-    $('#btnNuevo').click(()=>{
+    $('#btnRegistrarProducto').click(()=>{
 
         const producto = new Producto()
 
-        const user = firebase.auth().currentUser
-        if (user == null) {
-          alert(`Para crear el producto debes estar autenticado`)
-          window.location.replace('index.html');
-          return
-        }
-
-        const nombre = $('#nombre').val();
+        
+        firebase.auth().onAuthStateChanged((user) => {
+          if (user) {
+           const nombre = $('#nombre').val();
         const tipo = $('#tipo').val();
         const stock = $('#stock').val();
+
+        console.log(nombre)
 
         producto.crearProducto(
             user.uid,
@@ -28,7 +26,13 @@ $(() => {
           .catch(err => {
             console.log(`Error => ${err}`)
             alert(`Error => ${err}`)
-          })
+          }) 
+          } else {
+            alert(`Para crear el producto debes estar autenticado`)
+            window.location.replace('index.html');
+            return  
+          }
+        });
 
     });
 

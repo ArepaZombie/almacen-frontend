@@ -16,7 +16,7 @@
   <body>
 
     <h1 class="my-4">SISTEMA DE ALMACÉN</h1>
-    <h2 class="my-3">Arepera Nemo</h2>
+    <h2 class="my-3">Crear nuevo usuario</h2>
 
     
     <div class="container">
@@ -28,8 +28,13 @@
         </div>
 
         <div class="mb-3">
+          <input type="text" name="nombre" id="nombre"
+                 placeholder="Nombre del nuevo usuario" class="form-control form-control-lg border-dark">
+        </div>
+
+        <div class="mb-3">
           <input type="text" name="email" id="email"
-                 placeholder="Email" class="form-control form-control-lg border-dark">
+                 placeholder="Email del nuevo usuario" class="form-control form-control-lg border-dark">
         </div>
 
         <div class="mb-3">
@@ -38,8 +43,14 @@
         </div>
 
         <div class="d-grid">
-          <button id="btnIniciarSesion" type="button" class="btn btn-outline-light btn-lg">
+          <button id="btnRegistrarUsuario" type="button" class="btn btn-outline-light btn-lg">
             Ingresar
+          </button>
+        </div>
+
+        <div class="d-grid my-2">
+          <button id="btnVolver" type="button" class="btn btn-danger btn-lg">
+            Volver
           </button>
         </div>
 
@@ -64,8 +75,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
   -->
 
-
   <!--build:js js/main.min.js -->
+  <script type="text/javascript" src="js/nuevo.js"></script>
   <script type="text/javascript" src="js/config/ConfigFirebase.js"></script>
   <script type="text/javascript" src="js/general.js"></script>
   <script type="text/javascript" src="js/auth/autentication.js"></script>

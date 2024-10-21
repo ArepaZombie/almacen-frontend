@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/root.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script type="module" src="js/main.js"></script>
+    
 
     <title>Almacén - Iniciar Sesión</title>
   </head>
@@ -17,7 +16,6 @@
 
     <h2 class="my-3">Bienvenido!</h2>
 
-    
     <div class="container">
         <div class="input-group">
             
@@ -25,13 +23,11 @@
                 placeholder="Buscar por nombre..." 
                 class="form-control form-control-lg border-dark">
             
-            
-            
                 <button id="btnBuscar" class="btn btn-outline-primary">🔍</button>
             
         </div>
 
-        <button id="btnNuevo" class="btn btn-success w-100 m-2">Nuevo producto</button>
+        <button id="btnNuevoProducto" class="btn btn-success w-100 m-2">Nuevo producto</button>
 
         <table id="tablaProductos" class="w-100 table rounded border-primary table-hover">
             <tr class="text-center">
@@ -78,11 +74,9 @@
         </table>
 
 
-
-        <button class="btn btn-outline-light position-fixed top-0 end-0 m-3" onclick="alert('¡Botón flotante!')">
-            Cuentas
+        <button id="btnNuevoUsuario" class="btn btn-outline-light position-fixed top-0 end-0 m-3">
+            Agregar nuevo usuario
         </button>
-
 
         <button id="btnCerrarSesion"
          class="btn btn-danger position-fixed top-0 start-0 m-3">
@@ -96,4 +90,24 @@
 
     </div>
   </body>
+
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+  <!--
+  -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  
+  <!--build:js js/main.min.js -->
+  <script type="module" src="js/main.js"></script>
+  <script type="text/javascript" src="js/config/ConfigFirebase.js"></script>
+  <script type="text/javascript" src="js/general.js"></script>
+  <script type="text/javascript" src="js/auth/autentication.js"></script>
+  <script type="text/javascript" src="js/auth/autenticationController.js"></script>
+  <!-- endbuild -->
+
+
 </html>
