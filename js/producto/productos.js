@@ -120,5 +120,10 @@ class Producto {
         console.error(`Error borrando el producto => ${error}`);
       });
   }
+
+  obtenerProducto(idProducto) {
+    return this.db.collection('productos').doc(idProducto).get();
+  }
+
 }
   
