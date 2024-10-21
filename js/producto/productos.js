@@ -32,14 +32,14 @@ class Producto {
         });
       }
 
-      borrarProducto(idProducto) {
-        return this.db.collection('productos').doc(idProducto).delete()
-          .then(() => {
-            console.log(`Producto borrado`);
-          })
-          .catch(error => {
-            console.error(`Error borrando el producto => ${error}`);
-          });
-      }
+    borrarProducto(idProducto) {
+      return this.db.collection('productos').doc(idProducto).delete()
+        .then(() => {
+          console.log(`Producto borrado`);
+        })
+        .catch(error => {
+          console.error(`Error borrando el producto => ${error}`);
+        });
+    }
 }
   
