@@ -10,5 +10,9 @@
   },
   "devDependencies": {
     "vite": "^5.4.8"
-  }
+  },
+  "main": "counter.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

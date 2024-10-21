@@ -1,3 +1,4 @@
+/*
 window.addEventListener('load', function(){
     const btningresar = this.document.getElementById('btnIngresar');
 
@@ -5,3 +6,4 @@ window.addEventListener('load', function(){
         window.location.replace('main.html')
     })
 });
+*/
