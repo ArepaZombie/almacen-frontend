@@ -78,10 +78,6 @@ $(() => {
         });
     });
 
-
-<<<<<<< HEAD
-})
-=======
 })
 
 function preBorrado(idProducto){
@@ -115,4 +111,3 @@ function preEditar(idProducto){
     (producto) => console.log(producto)
   )
 }
->>>>>>> 44dfaeff4237255c7f7995bd11640cb298ba6fcd
