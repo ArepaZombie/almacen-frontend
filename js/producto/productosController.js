@@ -63,8 +63,8 @@ $(() => {
 
   $('#btnBuscar').click(() => {
     const tipo = $('#tipo').val();
-    const producto = new Producto();
 
+    const producto = new Producto();
     if (tipo.length>0){
       producto.produtosxTipo(tipo);
     } else producto.todosProdutos();
