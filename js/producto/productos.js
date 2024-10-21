@@ -14,7 +14,7 @@ class Producto {
           }else {
               $('#tablaProductos').append(this.templateHeader())
                querySnapshot.forEach( Producto => {
-                console.log(Producto.data())
+                console.log(Producto.id)
                   let postHtml =  this.templateProducto(
                       Producto.id,
                       Producto.data().nombre,
@@ -28,16 +28,15 @@ class Producto {
             })
   }
 
-  templateProducto(uid, nombre, tipo, stock){
+  templateProducto(id, nombre, tipo, stock){
     return `
     <tr>
         <td>${nombre}</td>
         <td>${tipo}</td>
         <td>${stock}</td>
         <td>
-            <button id="btnActualizar" class="btn btn-outline-primary">✅</button>
-            <button id="btnEditar" class="btn btn-outline-warning">✏️</button>
-            <button id="btnBorrar" class="btn btn-outline-danger">🗑️</button>
+            <button onclick="preEditar('${id}')" id="btnEditar" class="btn btn-outline-warning">✏️</button>
+            <button onclick="preBorrado('${id}')" id="btnBorrar" class="btn btn-outline-danger">🗑️</button>
         </td>
     </tr>
     `
