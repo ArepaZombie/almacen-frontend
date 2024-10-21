@@ -52,6 +52,7 @@ $(() => {
       window.location.replace(`editar.html?id=${idProducto}`);
     });
 
+
     $('#btnBorrar').click(() => {
       const producto = new Producto();
       const idProducto = $('#idProducto').val();
