@@ -1,0 +1,15 @@
+.container{
+    width: 75%;
+}
+
+.thnombre{
+    width: 65%;
+}
+
+.thtipo{
+    width: 10%;
+}
+
+.btn > td{
+    font-size: 10px;
+}
