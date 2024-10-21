@@ -104,6 +104,16 @@ $(() => {
         });
     });
 
+    $('#btnBuscar').click(() => {
+    
+      const tipo = $('#tipo').val();
+
+      if (tipo.length>0){
+        const producto = new Producto();
+        producto.produtosxTipo(tipo);
+      }
+
+    })
 
 })
 

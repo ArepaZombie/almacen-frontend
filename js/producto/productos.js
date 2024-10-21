@@ -28,6 +28,36 @@ class Producto {
             })
   }
 
+  produtosxTipo(tipo) {
+    console.log("Cargando productos")
+    this.db.collection(`productos`)
+    .where("tipo","==",tipo)
+    .onSnapshot( querySnapshot => {    
+        $('#tablaProductos').empty()     
+        if (querySnapshot.empty) {
+            console.log("vacio")
+            $('#tablaProductos').append(this.templateProductoVacio())
+        }else {
+            $('#tablaProductos').append(this.templateHeader())
+             querySnapshot.forEach( Producto => {
+              console.log(Producto.id)
+                let postHtml =  this.templateProducto(
+                    Producto.id,
+                    Producto.data().nombre,
+                    Producto.data().tipo,
+                    Producto.data().stock
+                )
+                $('#tablaProductos').append(postHtml)
+             })
+             $('#tablaProductos').addClass("w-100 table rounded border-primary table-hover")
+            }
+          })
+}
+
+templateProductoVacio(){
+  return '<h3>No se consiguieron productos</h3>'
+}
+
   templateProducto(id, nombre, tipo, stock){
     return `
     <tr>

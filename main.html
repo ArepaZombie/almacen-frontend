@@ -17,13 +17,17 @@
     <h2 class="my-3">Bienvenido!</h2>
 
     <div class="container">
+        
         <div class="input-group">
+          <select class="form-select form-control form-control-lg border-dark" id="tipo" name="tipo" required>
+            <option value="" selected disabled>Selecciona un tipo</option>
+            <option value="Lacteos">Lacteos</option>
+            <option value="Harinas">Harinas</option>
+            <option value="Vegetales">Vegetales</option>
+            <option value="Bebidas">Bebidas</option>
+          </select>
             
-                <input type="text" name="busqueda" id="busqueda" 
-                placeholder="Buscar por nombre..." 
-                class="form-control form-control-lg border-dark">
-            
-                <button id="btnBuscar" class="btn btn-outline-primary">🔍</button>
+          <button id="btnBuscar" class="btn btn-outline-primary">🔍</button>
             
         </div>
 
