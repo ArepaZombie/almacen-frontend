@@ -36,54 +36,40 @@ $(() => {
     window.location.replace('main.html'); // Redirigir a la página principal
   });
 
-    // boton para actulizar  
-    $('#btnActualizar').click(() => {
-      const producto = new Producto();
-      const idProducto = $('#idProducto').val();
-      const nombre = $('#nombre').val();
-      const tipo = $('#tipo').val();
-      const stock = $('#stock').val();
-      producto.actualizarProducto(idProducto, nombre, tipo, stock)
-        .then(() => {
-          alert(`Producto actualizado correctamente`);
-          window.location.replace('main.html');
-        })
-        .catch(err => {
-          console.log(`Error => ${err}`);
-          alert(`Error => ${err}`);
-        });
-    });
+  // boton para actulizar  
+  $('#btnActualizar').click(() => {
+    const producto = new Producto();
+    const idProducto = $('#idProducto').val();
+    const nombre = $('#nombre').val();
+    const tipo = $('#tipo').val();
+    const stock = $('#stock').val();
+    producto.actualizarProducto(idProducto, nombre, tipo, stock)
+      .then(() => {
+        alert(`Producto actualizado correctamente`);
+        window.location.replace('main.html');
+      })
+      .catch(err => {
+        console.log(`Error => ${err}`);
+        alert(`Error => ${err}`);
+      });
+  });
 
-    $('#btnEditar').click((event) => {
-      const idProducto = $(event.target).data('id');
-      window.location.replace(`editar.html?id=${idProducto}`);
-    });
+  $('#btnEditar').click((event) => {
+    const idProducto = $(event.target).data('id');
+    window.location.replace(`editar.html?id=${idProducto}`);
+  });
 
 
-    $('#btnBorrar').click(() => {
-      const producto = new Producto();
-      const idProducto = $('#idProducto').val();
-      producto.borrarProducto(idProducto)
-        .then(() => {
-          alert(`Producto borrado correctamente`);
-          window.location.replace('main.html');
-        })
-        .catch(err => {
-          console.log(`Error => ${err}`);
-          alert(`Error => ${err}`);
-        });
-    });
 
-    $('#btnBuscar').click(() => {
-    
-      const tipo = $('#tipo').val();
+  $('#btnBuscar').click(() => {
+    const tipo = $('#tipo').val();
+    const producto = new Producto();
 
-      if (tipo.length>0){
-        const producto = new Producto();
-        producto.produtosxTipo(tipo);
-      }
+    if (tipo.length>0){
+      producto.produtosxTipo(tipo);
+    } else producto.todosProdutos();
 
-    })
+  })
 
 })
 
@@ -93,16 +79,17 @@ function preBorrado(idProducto){
     if (user) {
       const producto = new Producto();
 
-      window.confirm()
-
-      producto.borrarProducto(idProducto)
-      .then(() => {
-        alert(`Producto borrado correctamente`);
-        window.location.replace('main.html');
-      })
-      .catch(err => {
-        console.log(`Error => ${err}`);
-        alert(`Error => ${err}`);})
+      if (window.confirm('¿Deseas borrar el producto?')){
+          producto.borrarProducto(idProducto)
+          .then(() => {
+            alert(`Producto borrado correctamente`);
+            window.location.replace('main.html');
+          })
+          .catch(err => {
+            console.log(`Error => ${err}`);
+            alert(`Error => ${err}`);
+          })
+        }
       }
     else {
         alert(`Para crear el producto debes estar autenticado`);
