@@ -1,6 +1,10 @@
 $(() => {
 
-           
+  $('#tablaProductos').ready(() => {
+    console.log('controller')
+    const producto = new Producto();
+    producto.todosProdutos();
+  })
 
 
 
